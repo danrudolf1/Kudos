@@ -23,17 +23,22 @@
 #define RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
 @interface AddRecommendationViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UITextFieldDelegate, AVCaptureVideoDataOutputSampleBufferDelegate,FBLoginViewDelegate, NSLayoutManagerDelegate>
-@property(nonatomic,strong) DemoImageEditor *imageEditor;
-@property (weak, nonatomic) IBOutlet UIView *allControlsView;
-@property(nonatomic,strong) ALAssetsLibrary *library;
+
 @property AVCaptureSession *captureSession;
 @property AVCaptureStillImageOutput *stillImageOutput;
 @property AVCaptureDevice *device;
 @property AVCaptureFlashMode flashMode;
 @property UIImagePickerController *picker;
+@property UIImage *currentFlashImage;
+@property BOOL didPickImageFromAlbum;
+@property int initialScrollOffsetPosition;
+@property(nonatomic,strong) ALAssetsLibrary *library;
+
+
+@property(nonatomic,strong) DemoImageEditor *imageEditor;
+@property (weak, nonatomic) IBOutlet UIView *allControlsView;
 @property (weak, nonatomic) IBOutlet UIButton *flashButton;
 @property (weak, nonatomic) IBOutlet UIButton *takeAnotherButton;
-@property UIImage *currentFlashImage;
 @property (weak, nonatomic) IBOutlet UIButton *setLocationButton;
 @property (weak, nonatomic) IBOutlet UIButton *cameraRollButton;
 @property (weak, nonatomic) IBOutlet UIButton *takePictureButton;
@@ -47,8 +52,7 @@
 @property (weak, nonatomic) IBOutlet UIView *continueButtonsView;
 @property (weak, nonatomic) IBOutlet UIView *cameraControlsView;
 @property (weak, nonatomic) IBOutlet UIImageView *cameraRollPreview;
-@property BOOL didPickImageFromAlbum;
-@property int initialScrollOffsetPosition;
+
 @end
 
 @implementation AddRecommendationViewController
@@ -83,9 +87,6 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-//    if (FBSession.activeSession.isOpen == YES){
-//
-//        [FBSession openActiveSessionWithAllowLoginUI:NO];
 
     [super viewDidAppear:animated];
 
